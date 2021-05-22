@@ -82,8 +82,9 @@ class MaterialController {
         db("material")
             .where("code", "=", codeFromUrl)
             .update({ code, name })
-            .then((id) => {
+            .then(id => {
                 return response.send({
+                    id,
                     code,
                     name,
                 });
