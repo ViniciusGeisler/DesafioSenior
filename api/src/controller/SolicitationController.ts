@@ -1,24 +1,21 @@
 import { Request, Response } from "express";
 import db from "../database/connection";
+import IdFinder from "../utils/IdFinder";
 
 class SolicitationController {
     async create(request: Request, response: Response) {
         const { solicitationNumber, requesterName } = request.body;
 
         if (!solicitationNumber) {
-            return response
-                .status(400)
-                .send({
-                    Mensagem: "O campo número da solicitação é obrigatório",
-                });
+            return response.status(400).send({
+                Mensagem: "O campo número da solicitação é obrigatório",
+            });
         }
 
         if (!requesterName) {
-            return response
-                .status(400)
-                .send({
-                    Mensagem: "O campo nome do solicitante é obrigatório",
-                });
+            return response.status(400).send({
+                Mensagem: "O campo nome do solicitante é obrigatório",
+            });
         }
 
         db("solicitation")
@@ -77,19 +74,15 @@ class SolicitationController {
         }
 
         if (!solicitationNumber) {
-            return response
-                .status(400)
-                .send({
-                    Mensagem: "O campo número da solicitação é obrigatório!",
-                });
+            return response.status(400).send({
+                Mensagem: "O campo número da solicitação é obrigatório!",
+            });
         }
 
         if (!requesterName) {
-            return response
-                .status(400)
-                .send({
-                    Mensagem: "O campo nome do solicitante é obrigatório!",
-                });
+            return response.status(400).send({
+                Mensagem: "O campo nome do solicitante é obrigatório!",
+            });
         }
 
         db("solicitation")
@@ -112,11 +105,19 @@ class SolicitationController {
     async delete(request: Request, response: Response) {
         const { solicitationNumber } = request.params;
 
+        const solicitationId = await IdFinder.findSolicitationId(
+            Number(solicitationNumber)
+        );
+
+        const requestItem = await db("request_item")
+            .delete()
+            .where("solicitation_id", "=", solicitationId);
+
         const solicitation = await db("solicitation")
             .delete()
             .where("solicitationNumber", "=", solicitationNumber);
 
-        if (!solicitation) {
+        if (!solicitation || !requestItem) {
             return response
                 .status(400)
                 .send({ Mensagem: "Falha ao exlcuir solicitação" });
