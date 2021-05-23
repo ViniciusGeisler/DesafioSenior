@@ -1,0 +1,15 @@
+a {
+  text-decoration: none !important;
+}
+
+.mx-05-children > * {
+  margin: auto .5rem;
+}
+
+.my-05 {
+  margin: .5rem auto;
+}
+
+.my-03-children > * {
+  margin: .3rem auto !important;
+}
