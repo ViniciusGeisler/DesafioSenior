@@ -9,6 +9,7 @@ Bem-vindo ao meu desafio!
 
 ## Como executar o projeto? 
 - Instale no seu computador o [NodeJs](https://nodejs.org/en/) junto com um gerenciador de pacotes [npm](https://www.npmjs.com/) ou [yarn](https://yarnpkg.com/)
+- Versão utilizada do node `14.15.1`
 
 - Ao abrir o projeto execute os seguintes comandos no terminal:
 
