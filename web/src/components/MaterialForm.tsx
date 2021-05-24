@@ -1,11 +1,11 @@
 import React, { FormEvent, useEffect, useState } from "react";
 import axios from "axios";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import { Container, Box, Typography } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Snackbar from "@material-ui/core/Snackbar";
-import '../global.css'
+import "../global.css";
 
 interface IMaterialFormProps {
   isUpdating?: boolean;
@@ -107,7 +107,6 @@ const MaterialForm: React.FC<IMaterialFormProps> = ({ isUpdating = false }) => {
 
   return (
     <Container maxWidth="lg">
-
       <Snackbar
         open={snackOpen}
         autoHideDuration={6000}
@@ -116,34 +115,49 @@ const MaterialForm: React.FC<IMaterialFormProps> = ({ isUpdating = false }) => {
       />
 
       <form onSubmit={handleSubmit}>
-      <Box display="flex" flexDirection="column" alignItems="center" className="my-03-children">
-        <Typography variant="h4">Criar Material</Typography>
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          className="my-03-children"
+        >
+          <Typography variant="h4">Criar Material</Typography>
 
-        <TextField
-          id="name"
-          label="Nome"
-          variant="outlined"
-          type="text"
-          name="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <TextField
-          id="code"
-          label="Código"
-          variant="outlined"
-          type="number"
-          name="code"
-          value={code}
-          onChange={(e) => setCode(e.target.value)}
-        />
+          <TextField
+            id="name"
+            label="Nome"
+            variant="outlined"
+            type="text"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <TextField
+            id="code"
+            label="Código"
+            variant="outlined"
+            type="number"
+            name="code"
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+          />
 
-        <span>{error}</span>
-
-        <Button variant="contained" color="primary" size="small" type="submit">
-          Salvar
-        </Button>
-      </Box>
+          <span>{error}</span>
+          <Button
+            variant="contained"
+            color="primary"
+            size="small"
+            type="submit"
+          >
+            Salvar
+          </Button>
+          <Link to="/material" style={{ margin: "auto 0" }}>
+            <Button variant="contained" color="primary" size="small">
+              Voltar
+            </Button>
+          </Link>
+          
+        </Box>
       </form>
     </Container>
   );

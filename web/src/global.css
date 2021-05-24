@@ -13,3 +13,7 @@ a {
 .my-03-children > * {
   margin: .3rem auto !important;
 }
+
+.my-01-children > * {
+  margin: .1rem auto !important;
+}
