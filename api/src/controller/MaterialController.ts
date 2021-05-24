@@ -112,7 +112,7 @@ class MaterialController {
 
         const material = await db("material").delete().where("code", "=", code);
 
-        if (!material || !requestItem) {
+        if (!material) {
             return response.status(400).send({ Mensagem: "Falha ao exlcuir" });
         }
 

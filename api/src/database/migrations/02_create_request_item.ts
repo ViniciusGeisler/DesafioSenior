@@ -18,6 +18,7 @@ export async function up(knex: Knex) {
             .onUpdate("CASCADE")
             .onDelete("CASCADE");
         table.integer("amount").notNullable();
+        table.string("material_name").notNullable();
     });
 }
 

@@ -117,7 +117,7 @@ class SolicitationController {
             .delete()
             .where("solicitationNumber", "=", solicitationNumber);
 
-        if (!solicitation || !requestItem) {
+        if (!solicitation) {
             return response
                 .status(400)
                 .send({ Mensagem: "Falha ao exlcuir solicitação" });
